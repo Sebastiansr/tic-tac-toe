@@ -1,0 +1,90 @@
+package tre.i.rad;
+
+import java.util.*;
+
+
+/**
+ *
+ * @author Sebastian
+ */
+public class TreIRad {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Board b = new Board();
+        Scanner sc = new Scanner (System.in);
+        System.out.println("Player 1 namn:");
+        String name1 = sc.nextLine();
+        System.out.println("Player 2 namn:");
+        String name2 = sc.nextLine();
+        System.out.println("Vill " + name1 + " vara X eller O?");
+        String Symbol = sc.nextLine();
+        Player player1 = new Player(name1, Symbol);
+        Player player2 = new Player(name2, Symbol);
+        b.drawNew();
+        int turns = 0;
+        while(true){
+             
+             if(Symbol.equals("x")){
+                 player1.Symbol = "x";
+                 player2.Symbol = "o";
+             }
+            else {
+                 player1.Symbol = "o";
+                 player2.Symbol = "x";
+             }
+
+             
+             turns++;
+             
+    
+       System.out.println(name1 + " sätt ut X eller O på position 1-9");
+       int playerMark = sc.nextInt();
+       boolean check = b.checkInput(playerMark - 1);
+       while(check == false) {
+           System.out.println("Felaktig position, gör om gör rätt");
+               playerMark = sc.nextInt();
+                   check = b.checkInput(playerMark - 1);
+       }
+       
+       b.input[playerMark - 1] = player1.Symbol;
+       b.draw();
+       b.winTest(player1.Symbol, player1.name);
+       boolean winCheck1 = b.winTest(player1.Symbol, name1);
+        if(winCheck1 == true){
+            turns = 0;
+            b.Reset();
+            b.draw();
+        }
+               boolean tieCheck = b.winTest(Symbol, name1);
+                if(tieCheck == false && turns == 9){
+                    System.out.println("Det blev oavgjort");
+                   b.Reset();
+                }
+      // b.checkFullBoard(player1.Symbol);
+      
+       System.out.println(name2 + " sätt ut X eller O på position 1-9");
+       
+       int playerMark2 = sc.nextInt();
+       boolean check2 = b.checkInput(playerMark2 - 1);
+       while(check2 == false){
+           System.out.println("Felaktig position, gör om gör rätt");
+                   playerMark2 = sc.nextInt();
+                        check2 = b.checkInput(playerMark2 - 1);
+       }
+       b.input[playerMark2 - 1] = player2.Symbol;
+       b.draw();
+       b.winTest(player2.Symbol, player2.name); 
+       boolean winCheck2 = b.winTest(player2.Symbol, player2.name);
+       if (winCheck2 == true){
+           turns = 0;
+            b.Reset();
+            b.draw();
+       }
+       turns++;
+      
+     }
+  }
+}
