@@ -1,0 +1,34 @@
+package tre.i.rad;
+
+
+
+/**
+ *
+ * @author Sebastian
+ */
+public class Player{
+   String name;
+   String Symbol;
+   
+   
+public Player(String name, String Symbol) 
+{
+    this.name = name;
+    this.Symbol = Symbol;
+    
+}
+public String getSymbol()
+{
+ return Symbol;
+}
+public String getName()
+{
+    return name;
+}
+
+  
+    
+    
+    
+}
+
