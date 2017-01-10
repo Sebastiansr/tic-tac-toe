@@ -1,0 +1,109 @@
+package tre.i.rad;
+
+/**
+ *
+ * @author Sebastian
+ */
+public class Board {
+   String input[];
+   String spelPlan;
+   String symbol;
+
+   public Board() {
+    
+    input = new String[9];
+    int i;
+    for(i = 0; i < input.length; i++) {
+        input[i] = " ";
+    }
+}
+   public void Reset() {
+   
+    int i;
+    for(i = 0; i < input.length; i++) {
+        input[i] = " ";
+    }    
+}  
+
+public void draw() {
+
+ 
+   String spelPlan = ("+---+---+---+\n" + 
+            "| " + input[0] + " | " + input[1] + " | " + input[2] + " |\n" + 
+            "+---+---+---+\n" + 
+            "| " + input[3] + " | " + input[4] + " | " + input[5] + " |\n" + 
+            "+---+---+---+\n" +
+            "| " + input[6] + " | " + input[7] + " | " + input[8] + " |\n" + 
+            "+---+---+---+\n");  
+   System.out.print(spelPlan);
+}
+
+public void drawNew(){
+
+ 
+   String spelPlan2 = ("+---+---+---+\n" + 
+            "| " + "1" + " | " + "2" + " | " + "3" + " |\n" + 
+            "+---+---+---+\n" + 
+            "| " + "4" + " | " + "5" + " | " + "6" + " |\n" + 
+            "+---+---+---+\n" +
+            "| " + "7" + " | " + "8" + " | " + "9" + " |\n" + 
+            "+---+---+---+\n");  
+   System.out.print(spelPlan2);
+}
+
+public boolean winTest(String symbol, String name){
+    boolean enBoolean = false;
+    if ((symbol + symbol + symbol).equals(input[0] + input[1] + input[2])) {
+        enBoolean = true;
+       }
+    else if ((symbol + symbol + symbol).equals(input[3] + input[4] + input[5])) {
+        enBoolean = true;
+    }
+    else if ((symbol + symbol + symbol).equals(input[6] + input[7] + input[8])) {
+        enBoolean = true;
+    }
+    else if ((symbol + symbol + symbol).equals(input[0] + input[3] + input[6])) {
+        enBoolean = true;
+    }
+    else if ((symbol + symbol + symbol).equals(input[1] + input[4] + input[7])) {
+        enBoolean = true;
+    }
+    else if ((symbol + symbol + symbol).equals(input[2] + input[5] + input[8])) {
+        enBoolean = true;
+    }
+    else if ((symbol + symbol + symbol).equals(input[0] + input[4] + input[8])) {
+        enBoolean = true;
+    }
+    else if ((symbol + symbol + symbol).equals(input[2] + input[4] + input[6])) {
+        enBoolean = true;
+    }
+    if(enBoolean == true){
+        System.out.println("Grattis! " + name + " vann!");
+        return true;}
+        else{
+                return false;
+                }
+        
+    
+}
+public void checkFullBoard(String symbol){
+   
+    
+    
+    int i;
+    for(i = 0; i < input.length; i++){
+        if((input[i]).equals(symbol + symbol + symbol + symbol + symbol))
+            System.out.println("Oavgjort");
+                
+    }
+}
+public boolean checkInput(int playerMark){
+    
+    if(playerMark >= 0 && playerMark <= 8 && (input[playerMark]).equals(" "))
+        return true;
+    else {
+        return false;
+    }
+}
+
+}
